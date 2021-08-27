@@ -1,0 +1,53 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+body{
+    background-color: #f1f1f1 !important;
+}
+
+nav.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+a.nav-link {
+    padding-top: 8px !important;
+    padding-bottom: 4px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    border-bottom: 4px solid transparent;
+}
+a.nav-link.active {
+    background-color: #eeffee;
+    border-bottom: 4px solid #34ac45;
+    color: #34ac45 !important;
+}
+.list-group-item img {
+    height: 24px;
+}
+
+.nav-item img,
+nav-link img {
+    height: 34px;
+}
+
+@media (min-width: 20px) {
+    .navbar-expand-md .navbar-nav {
+        flex-direction: row;
+    }
+}
+@media (min-width: 20px) {
+    .navbar-expand-md .navbar-nav .dropdown-menu {
+        position: absolute;
+    }
+}
+.list-group-item img {
+    height: 35px !important;
+    width: 35px !important;
+}
