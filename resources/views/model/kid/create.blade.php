@@ -5,8 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             @if(!empty($message))
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-info mb-3" role="alert">
                 {{ $message}}
+            </div>
+            @endif
+
+
+            @if($errors->any())
+            <div class="card mb-3">
+                <div class="card-header">Erros encontrados</div>
+                @foreach ($errors->all() as $error)
+                <div class="card-header text-danger bg-white">{{ $error }}</div>
+                @endforeach
             </div>
             @endif
 
@@ -19,8 +29,8 @@
                         <div class="form-group row">
 
                             <div class="col-md-5">
-                                <label for="name" class="">{{ __('Nome') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <label for="name" class="">{{ __('Nome') }}<strong class="text-danger px-1">*</strong></label>
+                                <input id="name" maxlength="30" minlength="3"   autocomplete autofocus required type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -29,8 +39,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-2">
-                                <label for="identification" class="">{{ __('RM') }}</label>
-                                <input id="identification" type="identification" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification">
+                                <label for="identification" class="">{{ __('RM') }}<strong class="text-danger px-1">*</strong></label>
+                                <input maxlength="10" minlength="10" required id="identification" type="identification" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification">
 
                                 @error('identification')
                                 <span class="invalid-feedback" role="alert">
@@ -39,8 +49,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-5">
-                                <label for="id_kid_class" class="">{{ __('Turma') }}</label>
-                                <select id="id_kid_class" type="id_kid_class" name="id_kid_class" class="form-control">
+                                <label for="id_kid_class" class="">{{ __('Turma') }}<strong class="text-danger px-1">*</strong></label>
+                                <select id="id_kid_class" required type="id_kid_class" name="id_kid_class" class="form-control">
                                     @if(!empty($modelKidClass))
                                     @foreach($modelKidClass as $kidClass)
                                     <option value="{{ $kidClass->id }}">{{ $kidClass->name }} - {{$kidClass->time}}</option>
@@ -58,8 +68,8 @@
 
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="responsable1_name" class="">{{ __('Responsável') }}</label>
-                                <input id="responsable1_name" type="text" class="form-control @error('responsable1_name') is-invalid @enderror" name="responsable1_name" value="{{ old('responsable1_name') }}" required autocomplete="responsable1_name" autofocus>
+                                <label for="responsable1_name" class="">{{ __('Responsável') }}<strong class="text-danger px-1">*</strong></label>
+                                <input id="responsable1_name"  maxlength="30" minlength="3"   required type="text" class="form-control @error('responsable1_name') is-invalid @enderror" name="responsable1_name" value="{{ old('responsable1_name') }}" required autocomplete="responsable1_name" autofocus>
 
                                 @error('responsable1_name')
                                 <span class="invalid-feedback" role="alert">
@@ -68,8 +78,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <label for="responsable1_phone" class="">{{ __('Telefone') }}</label>
-                                <input id="responsable1_phone" type="responsable1_phone" class="form-control @error('responsable1_phone') is-invalid @enderror" name="responsable1_phone" value="{{ old('responsable1_phone') }}" required autocomplete="responsable1_phone">
+                                <label for="responsable1_phone" class="">{{ __('Telefone') }}<strong class="text-danger px-1">*</strong></label>
+                                <input id="responsable1_phone" required type="responsable1_phone" class="form-control @error('responsable1_phone') is-invalid @enderror" name="responsable1_phone" value="{{ old('responsable1_phone') }}" required autocomplete="responsable1_phone">
 
                                 @error('responsable1_phone')
                                 <span class="invalid-feedback" role="alert">
@@ -80,8 +90,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="responsable2_name" class="">{{ __('Responsável') }}</label>
-                                <input id="responsable2_name" type="text" class="form-control @error('responsable2_name') is-invalid @enderror" name="responsable2_name" value="{{ old('responsable2_name') }}" required autocomplete="responsable2_name" autofocus>
+                                <label for="responsable2_name" class="">{{ __('Responsável') }}<strong class="text-danger px-1">*</strong></label>
+                                <input id="responsable2_name"  maxlength="30" minlength="3"   required type="text" class="form-control @error('responsable2_name') is-invalid @enderror" name="responsable2_name" value="{{ old('responsable2_name') }}" required autocomplete="responsable2_name" autofocus>
 
                                 @error('responsable2_name')
                                 <span class="invalid-feedback" role="alert">
@@ -90,8 +100,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <label for="responsable2_phone" class="">{{ __('Telefone') }}</label>
-                                <input id="responsable2_phone" type="responsable2_phone" class="form-control @error('responsable2_phone') is-invalid @enderror" name="responsable2_phone" value="{{ old('responsable2_phone') }}" required autocomplete="responsable2_phone">
+                                <label for="responsable2_phone" class="">{{ __('Telefone') }}<strong class="text-danger px-1">*</strong></label>
+                                <input id="responsable2_phone" required type="responsable2_phone" class="form-control @error('responsable2_phone') is-invalid @enderror" name="responsable2_phone" value="{{ old('responsable2_phone') }}" required autocomplete="responsable2_phone">
 
                                 @error('responsable2_phone')
                                 <span class="invalid-feedback" role="alert">
@@ -102,8 +112,13 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="photo">Foto</label>
-                                <input type="file" class="form-control-file" id="photo" name="photo" />
+                                <label for="photo">Foto<strong class="text-danger px-1">*</strong></label>
+                                <input type="file" required class="form-control-file" id="photo" name="photo" />
+                                @error('photo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -170,4 +185,14 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript" defer>
+    $(document).ready(function($) {
+        $("#responsable1_phone").mask("(99) 9999-9999");
+        $("#responsable2_phone").mask("(99) 9999-9999");
+
+    });
+</script>
 @endsection

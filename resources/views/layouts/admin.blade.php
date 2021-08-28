@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Tag Kids') }}</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.11.2/jquery.mask.min.js"></script>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -50,11 +54,11 @@
                             <div class="d-flex justify-content-center">
                                 <img src="https://img.icons8.com/doodle/48/000000/test-account.png" />
                             </div>
-                            <span class=" text-truncate">Minha Conta</span>
+                            <span class=" text-truncate">{{ Auth()->user()->name }}</span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a href="" class="dropdown-item">Novo Usuário</a>
+                            <a href="{{ route('register') }}" class="dropdown-item" >Novo Usuário</a>
                             <a href="" class="dropdown-item">Contas de Usuários</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -81,6 +85,7 @@
             </div>
         </main>
     </div>
+    @yield('js')
 </body>
 
 </html>

@@ -106,3 +106,11 @@
     </div>
 </div>
 @endsection
+
+@section('js')
+<script type="text/javascript" defer>
+    $(document).ready(function($) {
+        $("#phone").mask("(99) 9999-9999");
+    });
+</script>
+@endsection
