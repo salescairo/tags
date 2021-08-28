@@ -24,14 +24,13 @@ class KidClass extends FormRequest
      */
     public function rules()
     {
-
         $rules = [];
-        if (empty(intval($this->route()->parameter('client'))) && auth()->user()->type > 5) {
+        if (empty(intval($this->route()->parameter('turma')))) {
             $rules =  [
                 'name' => ['required', 'string', 'max:191'],
                 'time' => ['required', 'in:Manhã, Tarde'],
             ];
-        } else if (!empty(intval($this->route()->parameter('client'))) && auth()->user()->type < 4) {
+        } else{
             if ($this->request->has('name')) {
                 $name = ['required', 'string', 'max:191'];
                 $rules['name'] = $name;

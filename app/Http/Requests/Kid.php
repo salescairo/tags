@@ -26,7 +26,7 @@ class Kid extends FormRequest
     {
 
         $rules = [];
-        if (empty(intval($this->route()->parameter('kid')))) {
+        if (empty(intval($this->route()->parameter('aluno')))) {
             $rules =  [
                 'name' => ['required', 'string', 'max:191'],
                 'identification' => ['required', 'string', 'min:10', 'max:10'],
