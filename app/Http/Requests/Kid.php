@@ -26,27 +26,25 @@ class Kid extends FormRequest
     {
 
         $rules = [];
-        if (empty(intval($this->route()->parameter('client'))) && auth()->user()->type > 5) {
+        if (empty(intval($this->route()->parameter('kid')))) {
             $rules =  [
                 'name' => ['required', 'string', 'max:191'],
-                'identificator' => ['required', 'string', 'min:10', 'max:10'],
-                'active' => ['required', 'boolean'],
+                'identification' => ['required', 'string', 'min:10', 'max:10'],
                 'responsable1_name' => ['required', 'string'],
                 'responsable1_phone' => ['required', 'string'],
                 'responsable2_name' =>  ['required', 'string'],
                 'responsable2_phone' => ['required', 'string'],
                 'photo' => ['image', 'max:2000', 'min:4', 'mimes:png,jpeg,jpg'],
                 'id_kid_class' =>  ['required', 'integer', 'exists:App\Models\KidClass,id'],
-                'id_user' =>  ['required', 'integer', 'exists:App\Models\User,id'],
             ];
-        } else if (!empty(intval($this->route()->parameter('client'))) && auth()->user()->type < 4) {
+        } else {
             if ($this->request->has('name')) {
                 $name = ['required', 'string', 'max:191'];
                 $rules['name'] = $name;
             }
-            if ($this->request->has('matricula')) {
-                $matricula = ['required', 'string', 'max:191'];
-                $rules['matricula'] = $matricula;
+            if ($this->request->has('identificator')) {
+                $identificator = ['required', 'string', 'min:10', 'max:10'];
+                $rules['identificator'] = $identificator;
             }
             if (($this->request->has('active'))) {
                 $active = ['required', 'boolean'];
@@ -76,10 +74,6 @@ class Kid extends FormRequest
                 $id_kid_class = ['required', 'integer', 'exists:App\Models\KidClass,id'];
                 $rules['id_kid_class'] = $id_kid_class;
             }
-            if ($this->request->has('id_user')) {
-                $id_user = ['required', 'integer', 'exists:App\Models\User,id'];
-                $rules['id_user'] = $id_user;
-            }
         }
         return $rules;
     }
@@ -93,39 +87,26 @@ class Kid extends FormRequest
     {
         return [
             'name.required' => "Informe o nome.",
-            'address.required' => "Informe o endereço",
-            'district.required' => "Informe o Bairro",
-            'zipcode.required' => "Informe o CEP",
-            'number.required' => "Informe o número",
-            'phone1.required' => "Informe o telefone",
-            'active.required' => "Informe se está ativo ou bloqueado",
-            'email.required' => "Informe o Email.",
-            'password.required' => "Informe a senha.",
-            'id_city.required' => "Selecione uma cidade.",
-            'email.email' => "Informe um Email válido",
-            'email.unique' => "Uma conta já está cadastrada com esse E-mail",
-            'name.max' => "Tamanho máximo de caractere é 120",
-            'password.min' => "Sua senha deve ter no mínimo 8 digitos",
-            'password.confirmed' => "As senhas digitadas não coincidem",
-            'document_type.required' => "Favor selecionar se é pessoa física ou jurídica",
-            'document.required' => "Informe o número do documento",
-            'document.unique' => "Uma conta já está cadastrada com esse documento",
+            'identification.required' => "Informe a RM",
+            'identification.min' => "Verifique a RM,Quantidade de dígitos tem que ser igual a 10)",
+            'identification.max' => "Verifique a RM,Quantidade de dígitos tem que ser igual a 10)",
+            'identification.required' => "Informe a RM",
+            'responsable1_name.required' => "Informe o Bairro",
+            'responsable1_name.required' => "Informe o CEP",
+            'responsable2_name.required' => "Informe o número",
+            'responsable1_phone.required' => "Informe o telefone",
+            'responsable2_phone.required' => "Informe se está ativo ou bloqueado",
 
-            'id_city.required' => "Informe o cidade.",
-            'id_city.exists' => "Essa cidade não está presente nos registros do banco de dados.",
+            'id_kid_class.required' => "Informe a turma.",
+            'id_kid_class.exists' => "Essa turma não está presente nos registros do banco de dados.",
 
-            'document.cpf' => "Informe o CPF não reconhecido",
-            'document.formato_cpf' => "O formato do CPF não é válido",
 
-            'document.cnpj' => "Informe o CNPJ não reconhecido",
-            'document.formato_cnpj' => "O formato do CNPJ não é válido",
-
-            'logo.required' => "Selecione um aquivo de imagem",
-            'logo.image' => "Selecione um aquivo de imagem",
-            'logo.max' => "Tamanho máximo atingido: 2Mb",
-            'logo.min' => "Arquivo muito pequeno",
-            'logo.mimes' => "Extensão do arquivo não aceita. ",
-            'logo.uploaded' => "Tamanho máximo atingido: 2Mb",
+            'photo.required' => "Selecione um aquivo de imagem",
+            'photo.image' => "Selecione um aquivo de imagem",
+            'photo.max' => "Tamanho máximo atingido: 2Mb",
+            'photo.min' => "Arquivo muito pequeno",
+            'photo.mimes' => "Extensão do arquivo não aceita. ",
+            'photo.uploaded' => "Tamanho máximo atingido: 2Mb",
         ];
     }
 }
