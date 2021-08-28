@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repository\Contract\KidClassInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\KidClass as KidClassRequest;
+use App\Models\KidClass;
 
 class KidClassController extends Controller
 {

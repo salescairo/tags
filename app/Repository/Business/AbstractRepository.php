@@ -131,6 +131,12 @@ abstract class AbstractRepository
         return null;
     }
 
+
+    public function total()
+    {
+        return $this->model->all()->count();
+    }
+
     public function save(Request $data)
     {
         try {

@@ -19,4 +19,15 @@ class KidClassRepository extends AbstractRepository implements KidClassInterface
         parent::__construct($this->model, $this->relationships, $this->dependences, $this->unique);
     }
 
+
+    public function kidsPerClass()
+    {
+        return $this->model->get()->map(function ($kid) {
+            return   [
+                'id' => $kid->id,
+                'name' => $kid->name,
+                'kids' => $kid->kids->count()
+            ];
+        });
+    }
 }

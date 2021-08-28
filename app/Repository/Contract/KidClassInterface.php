@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 interface KidClassInterface{
     public function all(Request $data);
+    public function kidsPerClass();
     public function findById($id);
     public function findLastId();
     public function delete($id);

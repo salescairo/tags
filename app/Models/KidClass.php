@@ -28,6 +28,6 @@ class KidClass extends Model
 
 
     public function kids(){
-        return $this->hasMany(Kid::class,'id','id_kid_classes');
+        return $this->hasMany(Kid::class,'id_kid_class','id');
     }
 }
