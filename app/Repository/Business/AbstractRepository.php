@@ -102,6 +102,18 @@ abstract class AbstractRepository
         return null;
     }
 
+    public function findLastId()
+    {
+        $model = $this->model->with($this->relationships)->orderBy('id', 'desc')->first();
+        if (!empty($model)) {
+            $this->setMessage("Registro encontrado", 200);
+            return $model;
+        }
+        $this->setMessage("Registro não encontrado", 404);
+        return null;
+    }
+
+
     public function delete($id)
     {
         $model = $this->model->find($id);
