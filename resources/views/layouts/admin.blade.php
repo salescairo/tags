@@ -22,6 +22,14 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container d-flex d-flex justify-content-start w-100">
                 <ul class="navbar-nav ">
+                    <li class="nav-item">
+                        <a href="{{ route('home') }}" class="nav-link d-flex flex-column justify-content-center" href="#" id="navbarDropdownMenuLink" role="button">
+                            <div class="d-flex justify-content-center">
+                                <img src="https://img.icons8.com/plasticine/100/000000/chart.png" />
+                            </div>
+                            <span class="">Dashboard</span>
+                        </a>
+                    </li>
                     <li class="nav-item  dropdown">
                         <a class="nav-link d-flex flex-column justify-content-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="d-flex justify-content-center">
@@ -58,8 +66,8 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a href="{{ route('register') }}" class="dropdown-item" >Novo Usuário</a>
-                            <a href="" class="dropdown-item">Contas de Usuários</a>
+                            <a href="{{ route('admin.user.create') }}" class="dropdown-item">Novo Usuário</a>
+                            <a href="{{ route('admin.user.index') }}" class="dropdown-item">Contas de Usuários</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
