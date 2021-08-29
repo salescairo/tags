@@ -10,6 +10,15 @@
             </div>
             @endif
 
+            @if($errors->any())
+            <div class="card mb-3">
+                <div class="card-header">Erros encontrados</div>
+                @foreach ($errors->all() as $error)
+                <div class="card-header text-danger bg-white">{{ $error }}</div>
+                @endforeach
+            </div>
+            @endif
+
             <div class="card">
                 <div class="card-header">Consultar Alunos</div>
 
@@ -30,9 +39,9 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="time" class="">{{ __('Turno') }}</label>
-                                <select id="time" type="time" name="time" class="form-control">
-                                    <option>Manhã</option>
-                                    <option>Tarde</option>
+                                <select id="time" name="time" class="form-control">
+                                    <option selected value="Manhã">Manhã</option>
+                                    <option value="Tarde">Tarde</option>
                                 </select>
                                 @error('time')
                                 <span class="invalid-feedback" role="alert">

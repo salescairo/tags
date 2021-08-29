@@ -6,6 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard</div>
+                @if($kidsAllNumber > 0)
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
@@ -30,6 +31,22 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="">
+                                <h1>
+                                    <b>
+                                        Sem dados
+                                    </b>
+                                </h1>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

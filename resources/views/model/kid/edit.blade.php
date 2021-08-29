@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="id_kid_class" class="">{{ __('Classe') }}<strong class="text-danger px-1">*</strong></label>
-                                <select id="id_kid_class" required type="id_kid_class" class="form-control">
+                                <select id="id_kid_class" required name="id_kid_class" class="form-control">
                                     @if(!empty($modelKidClass))
                                     @foreach($modelKidClass as $kidClass)
                                     <option @if($kidClass->time == "Tarde") selected @endif value="{{ $kidClass->id }}">{{ $kidClass->name }}</option>
