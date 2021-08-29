@@ -27,10 +27,11 @@ class KidClassController extends Controller
 
     public function store(KidClassRequest $request, KidClassInterface $interface)
     {
-        return response()->view('model.kidClass.create', [
-            'model' => $interface->save($request),
-            'message' => $interface->getMessage()->text
-        ]);
+        $model =  $interface->save($request);
+        if ($model == null) {
+            return back();
+        }
+        return redirect()->route('admin.kid.class.index');
     }
 
     public function update($id, KidClassRequest $request, KidClassInterface $interface)

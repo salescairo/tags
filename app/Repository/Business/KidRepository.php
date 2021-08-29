@@ -30,12 +30,30 @@ class KidRepository extends AbstractRepository implements KidInterface
         try {
             if ($this->verifyDuplicity($data->all()) === false) {
                 $this->verifyColumns($data->all());
-                $data = $data->all();
-                $data['id_user'] = Auth::user()->id;
-                $data['photo'] = request()->file('photo')->store('kids');
-                $this->model->create($data);
-                $this->setMessage("Registro salvo com sucesso", 201);
-                return $this->model;
+                $model = new Kid();
+                $model->name = $data->name;
+                $model->identification = $data->identification;
+                $model->active = $data->active;
+                $model->responsable1_name = $data->responsable1_name;
+                $model->responsable1_phone = $data->responsable1_phone;
+                $model->responsable2_name = $data->responsable2_name;
+                $model->responsable2_phone = $data->responsable2_phone;
+                $model->id_kid_class = $data->id_kid_class;
+                $model->photo = request()->file('photo')->store('kids');
+                $model->id_user = Auth::user()->id;
+                $size = getimagesize(request()->file('photo'));
+                $width = $size[0];
+                $heigh = $size[1];
+
+                $rect = (((($width - ($heigh - (($heigh * 25) / 100))))) <= 0);
+                $width2 = $width * 2;
+                if ($rect == true && $width2 > $heigh) {
+                    $model->save();
+                    $this->setMessage("Registro salvo com sucesso", 201);
+                    return $model;
+                } else {
+                    $this->setMessage("Escolha uma foto no formato retrato.", 422);
+                }
             } else {
                 $this->setMessage("Registro já existente", 422);
             }

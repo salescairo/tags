@@ -28,7 +28,7 @@ class KidClass extends FormRequest
         if (empty(intval($this->route()->parameter('turma')))) {
             $rules =  [
                 'name' => ['required', 'string', 'max:191'],
-                'time' => ['required', 'in:Manhã, Tarde'],
+                'time' => ['required', 'in:Manhã,Tarde'],
             ];
         } else{
             if ($this->request->has('name')) {
@@ -55,8 +55,9 @@ class KidClass extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Informe o nome.",
-            'active.required' => "Informe se está ativo ou bloqueado",
+            'name.required' => "Informe o nome da turma.",
+            'time.required' => "Selecione o turno da turma",
+            'time.in' => "Selecione Manhã ou Tarde",
         ];
     }
 }

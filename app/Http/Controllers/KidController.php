@@ -15,15 +15,14 @@ class KidController extends Controller
         return response()->view('model.kid.index', ['models' => $interface->all($request)]);
     }
 
-    public function create(Request $request, KidInterface $interface,KidClassInterface $kidClassInterface)
+    public function create(Request $request, KidInterface $interface, KidClassInterface $kidClassInterface)
     {
-        $request->request->add(['all' => true]);
         return response()->view('model.kid.create', [
             'modelKidClass' => $kidClassInterface->all($request),
             'model' => $interface->findLastId()
         ]);
     }
-    public function edit(Request $request, $id, KidInterface $interface,KidClassInterface $kidClassInterface)
+    public function edit(Request $request, $id, KidInterface $interface, KidClassInterface $kidClassInterface)
     {
         $request->all = true;
         return response()->view('model.kid.edit', [
@@ -33,21 +32,22 @@ class KidController extends Controller
     }
 
 
-    public function store(KidRequest $request, KidInterface $interface)
+    public function store(KidRequest $request, KidInterface $interface, KidClassInterface $kidClassInterface)
     {
-        return response()->view('model.kid.create', [
-            'model' => $interface->save($request),
-            'message' => $interface->getMessage()->text
-        ]);
+        $model = $interface->save($request);
+        if ($model == null) {
+            return back();
+        }
+        return redirect()->route('admin.kid.index');
     }
 
-    public function update($id, KidRequest $request, KidInterface $interface,KidClassInterface $kidClassInterface)
+    public function update($id, KidRequest $request, KidInterface $interface, KidClassInterface $kidClassInterface)
     {
         $model = $interface->update($id, $request);
         if ($model == null) {
             return back();
         }
-        return response()->view('model.kid.index', ['models' => $interface->all($request)]);
+        return redirect()->route('admin.kid.index');
     }
 
     public function destroy($id, KidInterface $interface)
@@ -57,7 +57,7 @@ class KidController extends Controller
     }
     public function tag(Request $request, KidInterface $interface)
     {
-        $request->request->add(['all'=>true]);
+        $request->request->add(['all' => true]);
         return  PDF::loadView('model.kid.tag', ['models' => $interface->all($request)])->setPaper('a4')->setWarnings(false)->stream();
     }
 }

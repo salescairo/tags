@@ -26,10 +26,11 @@ class UserController extends Controller
 
     public function store(UserRequest $request, UserInterface $interface)
     {
-        return response()->view('model.user.create', [
-            'model' => $interface->save($request),
-            'message' => $interface->getMessage()->text
-        ]);
+        $model =  $interface->save($request);
+        if ($model == null) {
+            return back();
+        }
+        return redirect()->route('admin.user.index');
     }
 
     public function update($id, UserRequest $request, UserInterface $interface)

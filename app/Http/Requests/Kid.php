@@ -34,7 +34,7 @@ class Kid extends FormRequest
                 'responsable1_phone' => ['required', 'string'],
                 'responsable2_name' =>  ['required', 'string'],
                 'responsable2_phone' => ['required', 'string'],
-                'photo' => ['image', 'max:2000', 'min:4', 'mimes:png,jpeg,jpg'],
+                'photo' => ['image', 'max:7000', 'min:4', 'mimes:png,jpeg,jpg'],
                 'id_kid_class' =>  ['required', 'integer', 'exists:App\Models\KidClass,id'],
             ];
         } else {
