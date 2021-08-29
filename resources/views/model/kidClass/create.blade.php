@@ -68,7 +68,7 @@
             </div>
 
 
-            @if($model != null)
+            @if(isset($model) && $model != null)
             <div class="card list-group my-5">
                 <div class="card-header">Último Cadastrado</div>
                 <a data-toggle="modal" data-target="#kid{{$model->id}}" class="card-header bg-white list-group-item list-group-item-action">

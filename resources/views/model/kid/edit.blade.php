@@ -123,8 +123,9 @@
             </div>
 
 
+            @if(isset($model) && $model != null)
             <div class="card list-group my-5">
-                <div class="card-header">Cadastro</div>
+                <div class="card-header">Último Cadastro</div>
                 <a data-toggle="modal" data-target="#kid{{$model->id}}" class="card-header bg-white list-group-item list-group-item-action">
                     <div class="row d-flex align-items-center  py-1">
                         <div class="col-12 col-sm-12 col-md-4 text-truncate">
@@ -166,6 +167,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>
